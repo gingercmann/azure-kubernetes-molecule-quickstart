@@ -135,7 +135,7 @@
                         "type": "Microsoft.Common.DropDown",
                         "label": "Net App Service Level",
                         "toolTip": "Target performance for the capacity pool. Service level: Ultra, Premium, or Standard.",
-                        "defaultValue": "Premium",
+                        "defaultValue": "Standard",
                         "constraints": {
                         "allowedValues": [
                         {
@@ -203,7 +203,7 @@
                         "type": "Microsoft.Common.DropDown",
                         "label": "AKS Cluster Sku Tier",
                         "toolTip": "Specifies the tier of a managed cluster SKU: Paid or Free",
-                        "defaultValue": "Paid",
+                        "defaultValue": "Free",
                         "constraints": {
                         "allowedValues": [
                         {
@@ -246,7 +246,7 @@
                         "type": "Microsoft.Common.TextBox",
                         "label": "AKS Cluster Service Cidr",
                         "toolTip": "A CIDR notation IP range from which to assign service cluster IPs. It must not overlap with any Subnet IP ranges.",
-                        "defaultValue": "10.0.67.0/24",
+                        "defaultValue": "10.0.66.0/24",
                         "constraints": {
                             "required": true,
                             "regex": "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?$",
@@ -258,7 +258,7 @@
                         "type": "Microsoft.Common.TextBox",
                         "label": "AKS Cluster Dns Service IP",
                         "toolTip": "Specifies the IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range specified in serviceCidr.",
-                        "defaultValue": "10.0.67.10",
+                        "defaultValue": "10.0.66.1",
                         "constraints": {
                             "required": true,
                             "regex": "^([0-9]{1,3}\\.){3}[0-9]{1,3}$",
