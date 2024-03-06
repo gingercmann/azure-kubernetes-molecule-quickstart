@@ -331,7 +331,7 @@
       "removeChar1": "[replace(resourceGroup().name, '_', '')]",
       "removeChar2": "[replace(variables('removeChar1'), '.', '')]",
       "removeChar3": "[replace(variables('removeChar2'), '(', '')]",
-      "removeChar4": "[replace(variables('removeChar4'), '-', '')]",
+      "removeChar4": "[replace(variables('removeChar3'), '-', '')]",
       "cleanResourceGroupName": "[replace(tolower(variables('removeChar3')), ')', '')]",
   
       "deploymentName": "[concat(variables('cleanResourceGroupName'), '-', uniqueString(resourceGroup().id))]",
