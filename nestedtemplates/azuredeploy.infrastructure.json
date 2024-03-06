@@ -331,6 +331,8 @@
       "removeChar1": "[replace(resourceGroup().name, '_', '')]",
       "removeChar2": "[replace(variables('removeChar1'), '.', '')]",
       "removeChar3": "[replace(variables('removeChar2'), '(', '')]",
+      "removeChar4": "[replace(variables('removeChar3'), 'rg-net-', '')]",
+      "removeChar5": "[replace(variables('removeChar4'), '-', '')]",
       "cleanResourceGroupName": "[replace(tolower(variables('removeChar3')), ')', '')]",
   
       "deploymentName": "[concat(variables('cleanResourceGroupName'), '-', uniqueString(resourceGroup().id))]",
@@ -403,7 +405,7 @@
       "netAppVolumeName": "[take(concat(tolower(variables('netAppAccountName')), 'volume'),250)]",
       "netAppVolumeId": "[resourceId('Microsoft.NetApp/netAppAccounts/capacityPools/volumes', variables('netAppAccountName'), variables('netAppPoolName'), variables('netAppVolumeName'))]",
   
-      "keyVaultName": "[take(concat(variables('cleanResourceGroupName'), '-keyVault'), 64)]",
+      "keyVaultName": "[take(concat('kv-', substr(variables('removeChar5'), 8, 21)), 24)]",
       "keyVaultId": "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
   
       "applicationGatewayPublicIPAddressName": "[concat(variables('deploymentName'), '-applicationGatewayPublicIp')]",
