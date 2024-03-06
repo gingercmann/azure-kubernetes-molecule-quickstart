@@ -3,14 +3,14 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "virtualNetworkAddressPrefixes": {
-        "defaultValue": "10.0.0.0/19",
+        "defaultValue": "110.112.66.0/23",
         "type": "string",
         "metadata": {
           "description": "Specifies the address prefixes of the virtual network."
         }
       },
       "aksSubnetAddressPrefix": {
-        "defaultValue": "10.0.0.0/20",
+        "defaultValue": "110.112.66.0/23",
         "type": "string",
         "metadata": {
           "description": "Specifies the address prefix of the subnet hosting the system node pool of the AKS cluster."
@@ -18,21 +18,21 @@
       },
       "applicationGatewaySubnetAddressPrefix": {
         "type": "string",
-        "defaultValue": "10.0.16.0/25",
+        "defaultValue": "110.112.66.0/25",
         "metadata": {
           "description": "Specifies the address prefix of the subnet which contains the Application Gateway."
         }
       },
       "virtualMachineSubnetAddressPrefix": {
         "type": "string",
-        "defaultValue": "10.0.16.128/25",
+        "defaultValue": "10.112.67.128/25",
         "metadata": {
           "description": "Specifies the address prefix of the subnet which contains the virtual machine."
         }
       },
       "netAppFileSubnetAddressPrefix": {
         "type": "string",
-        "defaultValue": "10.0.17.0/25",
+        "defaultValue": "10.112.67.0/25",
         "metadata": {
           "description": "Specifies the NetApp File subnet IP prefix. This prefix must be within vnet IP prefix address space."
         }
@@ -101,14 +101,14 @@
         }
       },
       "aksClusterServiceCidr": {
-        "defaultValue": "10.0.24.0/24",
+        "defaultValue": "10.112.67.128/25",
         "type": "string",
         "metadata": {
           "description": "A CIDR notation IP range from which to assign service cluster IPs. It must not overlap with any Subnet IP ranges."
         }
       },
       "aksClusterDnsServiceIP": {
-        "defaultValue": "10.0.24.10",
+        "defaultValue": "10.0.67.10",
         "type": "string",
         "metadata": {
           "description": "Specifies the IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range specified in serviceCidr."
