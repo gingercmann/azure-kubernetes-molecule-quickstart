@@ -3,7 +3,6 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "environment": {
-        "defaultValue": "sbx",
         "type": "string",
         "metadata": {
           "description": "Specifies the Azure subscription used in this deployment."
@@ -334,14 +333,13 @@
   
       "readerRoleId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('readerRoleDefinitionName'))]",
       "contributorRoleId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('contributorRoleDefinitionName'))]",
-      "environment": "[parameters('environment')]",
 
       "removeChar1": "[replace(resourceGroup().name, '_', '')]",
       "removeChar2": "[replace(variables('removeChar1'), '.', '')]",
       "removeChar3": "[replace(variables('removeChar2'), '(', '')]",
       "removeChar4": "[replace(variables('removeChar3'), '-', '')]",
       "cleanResourceGroupName": "[replace(tolower(variables('removeChar4')), ')', '')]",
-      "rootResourceName": "[concat('bmi-', variables('environment'), '-geus')]",
+      "rootResourceName": "[concat('bmi-', parameters('environment'), '-geus')]",
   
       "deploymentName": "[concat(variables('rootResourceName'), '-', uniqueString(resourceGroup().id))]",
   
