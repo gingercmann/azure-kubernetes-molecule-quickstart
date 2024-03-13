@@ -348,60 +348,59 @@
       "aksClusterUserDefinedManagedIdentityName": "[concat(variables('deploymentName'), '-aksManagedIdentity')]",
       "aksClusterUserDefinedManagedIdentityId": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities',variables('aksClusterUserDefinedManagedIdentityName'))]",
   
-      "applicationGatewayUserDefinedManagedIdentityName": "[concat(variables('deploymentName'), '-applicationGatewayNameManagedIdentity')]",
+      "applicationGatewayUserDefinedManagedIdentityName": "[concat(variables('rootResourceName'), '-applicationGatewayNameManagedIdentity')]",
       "applicationGatewayUserDefinedManagedIdentityId": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities',variables('applicationGatewayUserDefinedManagedIdentityName'))]",
   
-      "aadPodIdentityUserDefinedManagedIdentityName": "[concat(variables('deploymentName'), '-aadPodManagedIdentity')]",
+      "aadPodIdentityUserDefinedManagedIdentityName": "[concat(variables('rootResourceName'), '-aadPodManagedIdentity')]",
       "aadPodIdentityUserDefinedManagedIdentityId": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities',variables('aadPodIdentityUserDefinedManagedIdentityName'))]",
   
-      "virtualMachineUserDefinedManagedIdentityName": "[concat(variables('deploymentName'), '-virtualMachineManagedIdentity')]",
+      "virtualMachineUserDefinedManagedIdentityName": "[concat(variables('rootResourceName'), '-virtualMachineManagedIdentity')]",
       "virtualMachineUserDefinedManagedIdentityId": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities',variables('virtualMachineUserDefinedManagedIdentityName'))]",
   
-      "aksContributorRoleAssignmentName": "[guid(concat(variables('deploymentName'), '-aksContributorRoleAssignment'))]",
+      "aksContributorRoleAssignmentName": "[guid(concat(variables('rootResourceName'), '-aksContributorRoleAssignment'))]",
       "aksContributorRoleAssignmentId": "[resourceId('Microsoft.Authorization/roleAssignments', variables('aksContributorRoleAssignmentName'))]",
   
-      "virtualMachineContributorRoleAssignmentName": "[guid(concat(variables('deploymentName'), '-virtualMachineContributorRoleAssignment'))]",
+      "virtualMachineContributorRoleAssignmentName": "[guid(concat(variables('rootResourceName'), '-virtualMachineContributorRoleAssignment'))]",
       "virtualMachineContributorRoleAssignmentId": "[resourceId('Microsoft.Authorization/roleAssignments', variables('virtualMachineContributorRoleAssignmentName'))]",
   
-      "applicationGatewayContributorRoleAssignmentName": "[guid(concat(variables('deploymentName'), '-applicationGatewayContributorRoleAssignment'))]",
-  
+      "applicationGatewayContributorRoleAssignmentName": "[guid(concat(variables('rootResourceName'), '-applicationGatewayContributorRoleAssignment'))]",
     
-      "natGatewayPublicIpAddressName": "[concat(variables('deploymentName'), '-natGatewayPublicIp')]",
+      "natGatewayPublicIpAddressName": "[concat(variables('rootResourceName'), '-natGatewayPublicIp')]",
       "natGatewayPublicIpAddressId": "[resourceId('Microsoft.Network/publicIPAddresses', variables('natGatewayPublicIpAddressName'))]",
   
-      "natGatewayPublicIpPrefixName": "[concat(variables('deploymentName'), '-natGatewayPublicIpPrefix')]",
+      "natGatewayPublicIpPrefixName": "[concat(variables('rootResourceName'), '-natGatewayPublicIpPrefix')]",
       "natGatewayPublicIpPrefixId": "[resourceId('Microsoft.Network/publicIPPrefixes', variables('natGatewayPublicIpPrefixName'))]",
   
-      "natGatewayname": "[concat(variables('deploymentName'), '-natGateway')]",
+      "natGatewayname": "[concat(variables('rootResourceName'), '-natGateway')]",
       "natGatewayId": "[resourceId('Microsoft.Network/natGateways', variables('natGatewayname'))]",
   
-      "virtualNetworkName": "[concat(variables('deploymentName'), '-virtualnetwork')]",
+      "virtualNetworkName": "[concat(variables('rootResourceName'), '-virtualnetwork')]",
       "virtualNetworkId": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
   
-      "aksSubnetName": "[concat(variables('deploymentName'), '-aksSubnet')]",
+      "aksSubnetName": "[concat(variables('rootResourceName'), '-aksSubnet')]",
       "aksSubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('aksSubnetName'))]",
   
-      "virtualMachineSubnetName": "[concat(variables('deploymentName'), '-virtualMachineSubnet')]",
+      "virtualMachineSubnetName": "[concat(variables('rootResourceName'), '-virtualMachineSubnet')]",
       "virtualMachineSubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('virtualMachineSubnetName'))]",
   
-      "applicationGatewaySubnetName": "[concat(variables('deploymentName'), '-applicationGatewaySubnet')]",
+      "applicationGatewaySubnetName": "[concat(variables('rootResourceName'), '-applicationGatewaySubnet')]",
       "applicationGatewaySubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('applicationGatewaySubnetName'))]",
   
-      "netAppFileSubnetName": "[concat(variables('deploymentName'), '-netAppFileSubnet')]",
+      "netAppFileSubnetName": "[concat(variables('rootResourceName'), '-netAppFileSubnet')]",
       "netAppFileSubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('netAppFileSubnetName'))]",
   
-      "virtualMachineSubnetNsgName": "[concat(variables('deploymentName'), '-Nsg')]",
+      "virtualMachineSubnetNsgName": "[concat(variables('rootResourceName'), '-Nsg')]",
       "virtualMachineSubnetNsgId": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('virtualMachineSubnetNsgName'))]",
   
-      "virtualMachineNicName": "[concat(variables('deploymentName'), '-virtualMachineNic')]",
+      "virtualMachineNicName": "[concat(variables('rootResourceName'), '-virtualMachineNic')]",
       "virtualMachineNicId": "[resourceId('Microsoft.Network/networkInterfaces', variables('virtualMachineNicName'))]",
   
-      "virtualMachinePublicIpAddressName": "[concat(variables('deploymentName'), '-virtualMachinePublicIp')]",
+      "virtualMachinePublicIpAddressName": "[concat(variables('rootResourceName'), '-virtualMachinePublicIp')]",
       "virtualMachinePublicIpAddressId": "[resourceId('Microsoft.Network/publicIPAddresses', variables('virtualMachinePublicIpAddressName'))]",
   
-      "netAppFileDelegationsName": "[concat(variables('deploymentName'), '-netAppDelegation')]",
+      "netAppFileDelegationsName": "[concat(variables('rootResourceName'), '-netAppDelegation')]",
   
-      "netAppAccountName": "[concat(variables('deploymentName'), '-netAppAccount')]",
+      "netAppAccountName": "[concat(variables('rootResourceName'), '-netAppAccount')]",
       "netAppAccountId": "[resourceId('Microsoft.NetApp/netAppAccounts/', variables('netAppAccountName'))]",
   
       "netAppPoolName": "[concat(tolower(variables('netAppAccountName')), 'pool')]",
@@ -416,13 +415,13 @@
       "keyVaultName": "[take(concat('kv-', variables('rootResourceName')),24)]",
       "keyVaultId": "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]",
   
-      "applicationGatewayPublicIPAddressName": "[concat(variables('deploymentName'), '-applicationGatewayPublicIp')]",
+      "applicationGatewayPublicIPAddressName": "[concat(variables('rootResourceName'), '-applicationGatewayPublicIp')]",
       "applicationGatewayPublicIPAddressId": "[resourceId('Microsoft.Network/publicIPAddresses', variables('applicationGatewayPublicIPAddressName'))]",
   
-      "applicationGatewayName": "[concat(variables('deploymentName'), '-applicationGateway')]",
+      "applicationGatewayName": "[concat(variables('rootResourceName'), '-applicationGateway')]",
       "applicationGatewayId": "[resourceId('Microsoft.Network/applicationGateways', variables('applicationGatewayName'))]",
   
-      "applicationGatewaySSLCert": "[concat(variables('deploymentName'), '-appGatewaySslCert')]",
+      "applicationGatewaySSLCert": "[concat(variables('rootResourceName'), '-appGatewaySslCert')]",
   
       "applicationGatewayIPConfigurationName": "applicationGatewayIPConfiguration",
       "applicationGatewayFrontendIPConfigurationName": "applicationGatewayFrontendIPConfiguration",
@@ -442,14 +441,14 @@
       "applicationGatewayHttpRequestRoutingRuleName": "httpRule",
       "applicationGatewayHttpsRequestRoutingRuleName": "httpsRule",
   
-      "aksClusterName": "[concat(variables('deploymentName'), '-aksCluster')]",
+      "aksClusterName": "[concat(variables('rootResourceName'), '-aksCluster')]",
       "aksClusterId": "[resourceId('Microsoft.ContainerService/managedClusters', variables('aksClusterName'))]",
         
-      "nrg": "[take(concat('MC_',variables('deploymentName')), 80)]",
+      "nrg": "[take(concat('MC_',variables('rootResourceName')), 80)]",
   
-      "aksClusterDnsPrefix": "[concat(variables('deploymentName'), '-aks')]",
+      "aksClusterDnsPrefix": "[concat(variables('rootResourceName'), '-aks')]",
   
-      "virtualMachineName": "[concat(variables('deploymentName'), '-virtualMachine')]",
+      "virtualMachineName": "[concat(variables('rootResourceName'), '-virtualMachine')]",
       "virtualMachineId": "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachineName'))]",
   
       "aadProfileConfiguration": {
