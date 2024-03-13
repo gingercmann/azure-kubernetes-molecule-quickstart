@@ -334,7 +334,7 @@
   
       "readerRoleId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('readerRoleDefinitionName'))]",
       "contributorRoleId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('contributorRoleDefinitionName'))]",
-      "environment": "sbx",
+      "environment": "[parameters('environment')]",
 
       "removeChar1": "[replace(resourceGroup().name, '_', '')]",
       "removeChar2": "[replace(variables('removeChar1'), '.', '')]",
