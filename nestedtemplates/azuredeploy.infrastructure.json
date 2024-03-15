@@ -766,7 +766,7 @@
         "properties": {
           "serviceLevel": "[parameters('netAppServiceLevel')]",
           "size": 4398046511104,
-          "qosType":"Manual",
+          "qosType":"Manual"
         }
       },
       {
