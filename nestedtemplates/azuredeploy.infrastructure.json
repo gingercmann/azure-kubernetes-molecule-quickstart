@@ -105,7 +105,8 @@
       "aksClusterTags": {
         "defaultValue": {
           "resourceType": "AKS Cluster",
-          "createdBy": "ARM Template"
+          "createdBy": "ARM Template",
+          "customer": "Hillsborough-CC"
         },
         "type": "object",
         "metadata": {
@@ -1117,7 +1118,7 @@
             "[variables('aksClusterUserDefinedManagedIdentityId')]": {}
           }
         },
-        "tags": "[concat(parameters('globalTags'), parameters('aksClusterTags'))]",  // "[parameters('aksClusterTags')]",
+        "tags": "[parameters('aksClusterTags')]",
         "dependsOn": [
           "[variables('virtualNetworkId')]",
           "[variables('applicationGatewayId')]",
