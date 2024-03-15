@@ -519,8 +519,7 @@
           "description": "Assign the cluster user-defined managed identity contributor role on the resource group.",
           "principalId": "[reference(variables('aksClusterUserDefinedManagedIdentityName')).principalId]",
           "principalType": "ServicePrincipal",
-          "scope": "[resourceGroup().id]",
-          "tags": "[parameters('globalTags')]"
+          "scope": "[resourceGroup().id]"
         }
       },
       {
@@ -535,8 +534,7 @@
           "roleDefinitionId": "[variables('contributorRoleId')]",
           "principalId": "[reference(variables('aksClusterId'), '2021-05-01', 'Full').properties.addonProfiles.ingressApplicationGateway.identity.objectId]",
           "principalType": "ServicePrincipal",
-          "scope": "[resourceGroup().id]",
-          "tags": "[parameters('globalTags')]"
+          "scope": "[resourceGroup().id]"
         }
       },
       {
@@ -550,8 +548,7 @@
           "roleDefinitionId": "[variables('contributorRoleId')]",
           "principalId": "[reference(variables('virtualMachineUserDefinedManagedIdentityName')).principalId]",
           "principalType": "ServicePrincipal",
-          "scope": "[resourceGroup().id]",
-          "tags": "[parameters('globalTags')]"
+          "scope": "[resourceGroup().id]"
         }
       },
       {
@@ -1404,7 +1401,6 @@
           "[variables('virtualMachineContributorRoleAssignmentId')]"
         ],
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "publisher": "Microsoft.Azure.Extensions",
           "type": "CustomScript",
           "typeHandlerVersion": "2.0",
