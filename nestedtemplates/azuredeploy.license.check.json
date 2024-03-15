@@ -305,7 +305,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "environmwnt": {
+          "environment": {
             "value": "[parameters('environment')]"
           },
           "virtualNetworkAddressPrefixes": {
