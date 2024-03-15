@@ -556,8 +556,7 @@
         "properties": {
           "publicIPAddressVersion": "IPv4",
           "publicIPAllocationMethod": "Static",
-          "idleTimeoutInMinutes": 30,
-          "tags": "[parameters('globalTags')]"
+          "idleTimeoutInMinutes": 30
         }
       },
       {
@@ -614,7 +613,6 @@
           "[variables('natGatewayPublicIpPrefixId')]"
         ],
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "idleTimeoutInMinutes": 4,
           "publicIpAddresses": [
             {
@@ -634,7 +632,6 @@
         "name": "[variables('virtualMachineSubnetNsgName')]",
         "location": "[parameters('location')]",
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "securityRules": [
             {
               "name": "allow-ssh-inbound",
