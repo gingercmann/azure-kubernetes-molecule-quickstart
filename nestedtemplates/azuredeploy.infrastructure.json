@@ -477,10 +477,7 @@
         "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
         "name": "[variables('aksClusterUserDefinedManagedIdentityName')]",
         "apiVersion": "2022-01-31-PREVIEW",
-        "location": "[parameters('location')]",
-        "properties": {
-          "tags": "[parameters('globalTags')]"
-        }
+        "location": "[parameters('location')]"
       },
       {
         "comments": "User-Defined Managed Identity used by the Application Gateway is assigned. Used to access Azure Key Vault.",
@@ -494,10 +491,7 @@
         "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
         "apiVersion": "2022-01-31-PREVIEW",
         "name": "[variables('aadPodIdentityUserDefinedManagedIdentityName')]",
-        "location": "[parameters('location')]",
-        "properties": {
-          "tags": "[parameters('globalTags')]"
-        }
+        "location": "[parameters('location')]"
       },
       {
         "comments": "User-Defined Managed Identity defined for the Azure Virtual Machine. Used to access the Virtual Network and other resources.",
@@ -577,8 +571,7 @@
         "properties": {
           "publicIPAddressVersion": "IPv4",
           "publicIPAllocationMethod": "Static",
-          "idleTimeoutInMinutes": 30,
-          "tags": "[parameters('globalTags')]"
+          "idleTimeoutInMinutes": 30
         }
       },
       {
@@ -592,8 +585,7 @@
         "properties": {
           "publicIPAddressVersion": "IPv4",
           "publicIPAllocationMethod": "Static",
-          "idleTimeoutInMinutes": 30,
-          "tags": "[parameters('globalTags')]"
+          "idleTimeoutInMinutes": 30
         }
       },
       {
@@ -606,8 +598,7 @@
         },
         "properties": {
           "prefixLength": 31,
-          "publicIPAddressVersion": "IPv4",
-          "tags": "[parameters('globalTags')]"
+          "publicIPAddressVersion": "IPv4"
         }
       },
       {
@@ -623,6 +614,7 @@
           "[variables('natGatewayPublicIpPrefixId')]"
         ],
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "idleTimeoutInMinutes": 4,
           "publicIpAddresses": [
             {
@@ -633,8 +625,7 @@
             {
               "id": "[variables('natGatewayPublicIpPrefixId')]"
             }
-          ],
-          "tags": "[parameters('globalTags')]"
+          ]
         }
       },
       {
@@ -643,6 +634,7 @@
         "name": "[variables('virtualMachineSubnetNsgName')]",
         "location": "[parameters('location')]",
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "securityRules": [
             {
               "name": "allow-ssh-inbound",
@@ -658,8 +650,7 @@
               }
             }
           ]
-        },
-          "tags": "[parameters('globalTags')]"
+        }
       },
       {
         "apiVersion": "2022-01-01",
@@ -671,12 +662,12 @@
           "[variables('natGatewayId')]"
         ],
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "addressSpace": {
             "addressPrefixes": [
               "[parameters('virtualNetworkAddressPrefixes')]"
             ]
           },
-          "tags": "[parameters('globalTags')]",
           "subnets": [
             {
               "name": "[variables('aksSubnetName')]",
@@ -712,7 +703,6 @@
               "name": "[variables('applicationGatewaySubnetName')]",
               "properties": {
                 "addressPrefix": "[parameters('applicationGatewaySubnetAddressPrefix')]",
-                "tags": "[parameters('globalTags')]",
                 "privateEndpointNetworkPolicies": "Disabled",
                 "privateLinkServiceNetworkPolicies": "Enabled",
                 "serviceEndpoints": [
@@ -744,8 +734,7 @@
           ],
           "enableDdosProtection": false,
           "enableVmProtection": false
-        },
-          "tags": "[parameters('globalTags')]"
+        }
       },
       {
         "name": "[variables('netAppAccountName')]",
@@ -777,6 +766,7 @@
           "[variables('virtualNetworkId')]"
         ],
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "serviceLevel": "[parameters('netAppServiceLevel')]",
           "creationToken": "[variables('netAppVolumeName')]",
           "usageThreshold": 4398046511104,
@@ -800,8 +790,7 @@
           ],
           "subnetId": "[variables('netAppFileSubnetId')]",
           "snapshotDirectoryVisible": false
-        },
-          "tags": "[parameters('globalTags')]"
+        }
       },
       {
         "type": "Microsoft.KeyVault/vaults",
@@ -915,6 +904,7 @@
           "[variables('keyVaultId')]"
         ],
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "value": "[parameters('sslCertificateSecretData')]",
           "recoveryLevel": "Purgeable",
           "attributes": {
@@ -922,8 +912,7 @@
             "nbf": 1585206000,
             "exp": 1679814000
           }
-        },
-          "tags": "[parameters('globalTags')]"
+        }
       },
       {
         "type": "Microsoft.Network/applicationGateways",
@@ -1304,8 +1293,7 @@
           "scaleSetPriority": "Regular",
           "scaleSetEvictionPolicy": "Delete",
           "availabilityZones": "[parameters('aksNodePoolAvailabilityZones')]"
-        },
-          "tags": "[parameters('globalTags')]"
+        }
       },
       {
         "type": "Microsoft.Network/networkInterfaces",
@@ -1317,7 +1305,6 @@
           "[variables('virtualMachinePublicIpAddressId')]"
         ],
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "ipConfigurations": [
             {
               "name": "ipconfig1",
