@@ -96,6 +96,12 @@
           "description": "Specifies the vm size of nodes in the user node pool."
         }
       },
+      "globalTags": {
+        "type": "object",
+        "defaultValue": {
+          "customer": "Hillsborough-CC"
+        }
+      },
       "aksClusterTags": {
         "defaultValue": {
           "resourceType": "AKS Cluster",
@@ -470,7 +476,10 @@
         "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
         "name": "[variables('aksClusterUserDefinedManagedIdentityName')]",
         "apiVersion": "2022-01-31-PREVIEW",
-        "location": "[parameters('location')]"
+        "location": "[parameters('location')]",
+        "properties": {
+          "tags": "[parameters('globalTags')]"
+        }
       },
       {
         "comments": "User-Defined Managed Identity used by the Application Gateway is assigned. Used to access Azure Key Vault.",
@@ -484,7 +493,10 @@
         "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
         "apiVersion": "2022-01-31-PREVIEW",
         "name": "[variables('aadPodIdentityUserDefinedManagedIdentityName')]",
-        "location": "[parameters('location')]"
+        "location": "[parameters('location')]",
+        "properties": {
+          "tags": "[parameters('globalTags')]"
+        }
       },
       {
         "comments": "User-Defined Managed Identity defined for the Azure Virtual Machine. Used to access the Virtual Network and other resources.",
@@ -506,7 +518,8 @@
           "description": "Assign the cluster user-defined managed identity contributor role on the resource group.",
           "principalId": "[reference(variables('aksClusterUserDefinedManagedIdentityName')).principalId]",
           "principalType": "ServicePrincipal",
-          "scope": "[resourceGroup().id]"
+          "scope": "[resourceGroup().id]",
+          "tags": "[parameters('globalTags')]"
         }
       },
       {
@@ -521,7 +534,8 @@
           "roleDefinitionId": "[variables('contributorRoleId')]",
           "principalId": "[reference(variables('aksClusterId'), '2021-05-01', 'Full').properties.addonProfiles.ingressApplicationGateway.identity.objectId]",
           "principalType": "ServicePrincipal",
-          "scope": "[resourceGroup().id]"
+          "scope": "[resourceGroup().id]",
+          "tags": "[parameters('globalTags')]"
         }
       },
       {
@@ -535,7 +549,8 @@
           "roleDefinitionId": "[variables('contributorRoleId')]",
           "principalId": "[reference(variables('virtualMachineUserDefinedManagedIdentityName')).principalId]",
           "principalType": "ServicePrincipal",
-          "scope": "[resourceGroup().id]"
+          "scope": "[resourceGroup().id]",
+          "tags": "[parameters('globalTags')]"
         }
       },
       {
@@ -549,7 +564,8 @@
         "properties": {
           "publicIPAddressVersion": "IPv4",
           "publicIPAllocationMethod": "Static",
-          "idleTimeoutInMinutes": 30
+          "idleTimeoutInMinutes": 30,
+          "tags": "[parameters('globalTags')]"
         }
       },
       {
@@ -563,7 +579,8 @@
         "properties": {
           "publicIPAddressVersion": "IPv4",
           "publicIPAllocationMethod": "Static",
-          "idleTimeoutInMinutes": 30
+          "idleTimeoutInMinutes": 30,
+          "tags": "[parameters('globalTags')]"
         }
       },
       {
@@ -577,7 +594,8 @@
         "properties": {
           "publicIPAddressVersion": "IPv4",
           "publicIPAllocationMethod": "Static",
-          "idleTimeoutInMinutes": 30
+          "idleTimeoutInMinutes": 30,
+          "tags": "[parameters('globalTags')]"
         }
       },
       {
@@ -590,7 +608,8 @@
         },
         "properties": {
           "prefixLength": 31,
-          "publicIPAddressVersion": "IPv4"
+          "publicIPAddressVersion": "IPv4",
+          "tags": "[parameters('globalTags')]"
         }
       },
       {
@@ -616,7 +635,8 @@
             {
               "id": "[variables('natGatewayPublicIpPrefixId')]"
             }
-          ]
+          ],
+          "tags": "[parameters('globalTags')]"
         }
       },
       {
@@ -640,7 +660,8 @@
               }
             }
           ]
-        }
+        },
+          "tags": "[parameters('globalTags')]"
       },
       {
         "apiVersion": "2022-01-01",
@@ -657,6 +678,7 @@
               "[parameters('virtualNetworkAddressPrefixes')]"
             ]
           },
+          "tags": "[parameters('globalTags')]",
           "subnets": [
             {
               "name": "[variables('aksSubnetName')]",
@@ -692,6 +714,7 @@
               "name": "[variables('applicationGatewaySubnetName')]",
               "properties": {
                 "addressPrefix": "[parameters('applicationGatewaySubnetAddressPrefix')]",
+                "tags": "[parameters('globalTags')]",
                 "privateEndpointNetworkPolicies": "Disabled",
                 "privateLinkServiceNetworkPolicies": "Enabled",
                 "serviceEndpoints": [
@@ -723,7 +746,8 @@
           ],
           "enableDdosProtection": false,
           "enableVmProtection": false
-        }
+        },
+          "tags": "[parameters('globalTags')]"
       },
       {
         "name": "[variables('netAppAccountName')]",
@@ -742,7 +766,7 @@
         "properties": {
           "serviceLevel": "[parameters('netAppServiceLevel')]",
           "size": 4398046511104,
-          "qosType":"Manual"
+          "qosType":"Manual",
         }
       },
       {
@@ -778,7 +802,8 @@
           ],
           "subnetId": "[variables('netAppFileSubnetId')]",
           "snapshotDirectoryVisible": false
-        }
+        },
+          "tags": "[parameters('globalTags')]"
       },
       {
         "type": "Microsoft.KeyVault/vaults",
@@ -792,6 +817,7 @@
           "[variables('virtualNetworkId')]"
         ],
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "accessPolicies": [
             {
               "tenantId": "[reference(variables('applicationGatewayUserDefinedManagedIdentityId')).tenantId]",
@@ -898,7 +924,8 @@
             "nbf": 1585206000,
             "exp": 1679814000
           }
-        }
+        },
+          "tags": "[parameters('globalTags')]"
       },
       {
         "type": "Microsoft.Network/applicationGateways",
@@ -917,6 +944,7 @@
           }
         },
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "sku": {
             "name": "Standard_v2",
             "tier": "Standard_v2"
@@ -1089,7 +1117,7 @@
             "[variables('aksClusterUserDefinedManagedIdentityId')]": {}
           }
         },
-        "tags": "[parameters('aksClusterTags')]",
+        "tags": "[concat(parameters('globalTags'), parameters('aksClusterTags'))]",  // "[parameters('aksClusterTags')]",
         "dependsOn": [
           "[variables('virtualNetworkId')]",
           "[variables('applicationGatewayId')]",
@@ -1278,7 +1306,8 @@
           "scaleSetPriority": "Regular",
           "scaleSetEvictionPolicy": "Delete",
           "availabilityZones": "[parameters('aksNodePoolAvailabilityZones')]"
-        }
+        },
+          "tags": "[parameters('globalTags')]"
       },
       {
         "type": "Microsoft.Network/networkInterfaces",
@@ -1290,6 +1319,7 @@
           "[variables('virtualMachinePublicIpAddressId')]"
         ],
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "ipConfigurations": [
             {
               "name": "ipconfig1",
@@ -1323,6 +1353,7 @@
           }
         },
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "hardwareProfile": {
             "vmSize": "[parameters('virtualMachineSize')]"
           },
@@ -1372,6 +1403,7 @@
           "[variables('virtualMachineContributorRoleAssignmentId')]"
         ],
         "properties": {
+          "tags": "[parameters('globalTags')]",
           "publisher": "Microsoft.Azure.Extensions",
           "type": "CustomScript",
           "typeHandlerVersion": "2.0",
