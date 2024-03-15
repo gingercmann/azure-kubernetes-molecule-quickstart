@@ -549,6 +549,7 @@
         "type": "Microsoft.Network/publicIPAddresses",
         "apiVersion": "2022-01-01",
         "name": "[variables('applicationGatewayPublicIPAddressName')]",
+        "tags": "[parameters('globalTags')]",
         "location": "[parameters('location')]",
         "sku": {
           "name": "Standard"
@@ -562,6 +563,7 @@
       {
         "type": "Microsoft.Network/publicIPAddresses",
         "name": "[variables('virtualMachinePublicIpAddressName')]",
+        "tags": "[parameters('globalTags')]",
         "apiVersion": "2022-01-01",
         "location": "[parameters('location')]",
         "sku": {
@@ -575,6 +577,7 @@
       },
       {
         "type": "Microsoft.Network/publicIPAddresses",
+        "tags": "[parameters('globalTags')]",
         "apiVersion": "2022-01-01",
         "name": "[variables('natGatewayPublicIpAddressName')]",
         "location": "[parameters('location')]",
@@ -604,6 +607,7 @@
         "type": "Microsoft.Network/natGateways",
         "apiVersion": "2022-01-01",
         "name": "[variables('natGatewayname')]",
+        "tags": "[parameters('globalTags')]",
         "location": "[parameters('location')]",
         "sku": {
           "name": "Standard"
@@ -630,6 +634,7 @@
         "apiVersion": "2022-01-01",
         "type": "Microsoft.Network/networkSecurityGroups",
         "name": "[variables('virtualMachineSubnetNsgName')]",
+        "tags": "[parameters('globalTags')]",
         "location": "[parameters('location')]",
         "properties": {
           "securityRules": [
@@ -653,13 +658,13 @@
         "apiVersion": "2022-01-01",
         "type": "Microsoft.Network/virtualNetworks",
         "name": "[variables('virtualNetworkName')]",
+        "tags": "[parameters('globalTags')]",
         "location": "[parameters('location')]",
         "dependsOn": [
           "[variables('virtualMachineSubnetNsgId')]",
           "[variables('natGatewayId')]"
         ],
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "addressSpace": {
             "addressPrefixes": [
               "[parameters('virtualNetworkAddressPrefixes')]"
@@ -736,12 +741,14 @@
       {
         "name": "[variables('netAppAccountName')]",
         "type": "Microsoft.NetApp/netAppAccounts",
+        "tags": "[parameters('globalTags')]",
         "apiVersion": "2022-01-01",
         "location": "[parameters('location')]"
       },
       {
         "name": "[variables('capacityPoolName')]",
         "type": "Microsoft.NetApp/netAppAccounts/capacityPools",
+        "tags": "[parameters('globalTags')]",
         "apiVersion": "2022-01-01",
         "location": "[parameters('location')]",
         "dependsOn": [
@@ -755,6 +762,7 @@
       },
       {
         "name": "[variables('volumeName')]",
+        "tags": "[parameters('globalTags')]",
         "type": "Microsoft.NetApp/netAppAccounts/capacityPools/volumes",
         "apiVersion": "2022-01-01",
         "location": "[parameters('location')]",
@@ -763,7 +771,6 @@
           "[variables('virtualNetworkId')]"
         ],
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "serviceLevel": "[parameters('netAppServiceLevel')]",
           "creationToken": "[variables('netAppVolumeName')]",
           "usageThreshold": 4398046511104,
@@ -793,6 +800,7 @@
         "type": "Microsoft.KeyVault/vaults",
         "apiVersion": "2022-07-01",
         "name": "[variables('keyVaultName')]",
+        "tags": "[parameters('globalTags')]",
         "location": "[parameters('location')]",
         "dependsOn": [
           "[variables('applicationGatewayUserDefinedManagedIdentityId')]",
@@ -801,7 +809,6 @@
           "[variables('virtualNetworkId')]"
         ],
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "accessPolicies": [
             {
               "tenantId": "[reference(variables('applicationGatewayUserDefinedManagedIdentityId')).tenantId]",
@@ -896,12 +903,12 @@
         "type": "Microsoft.KeyVault/vaults/secrets",
         "apiVersion": "2022-07-01",
         "name": "[concat(variables('keyVaultName'), '/appGatewaySslCert')]",
+        "tags": "[parameters('globalTags')]",
         "location": "[parameters('location')]",
         "dependsOn": [
           "[variables('keyVaultId')]"
         ],
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "value": "[parameters('sslCertificateSecretData')]",
           "recoveryLevel": "Purgeable",
           "attributes": {
@@ -915,6 +922,7 @@
         "type": "Microsoft.Network/applicationGateways",
         "apiVersion": "2020-11-01",
         "name": "[variables('applicationGatewayName')]",
+        "tags": "[parameters('globalTags')]",
         "location": "[parameters('location')]",
         "dependsOn": [
           "[variables('keyVaultId')]",
@@ -928,7 +936,6 @@
           }
         },
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "sku": {
             "name": "Standard_v2",
             "tier": "Standard_v2"
@@ -1230,6 +1237,7 @@
       },
       {
         "name": "[concat(variables('aksClusterName'), '/systempool')]",
+        "tags": "[parameters('globalTags')]",
         "type": "Microsoft.ContainerService/managedClusters/agentPools",
         "apiVersion": "2021-10-01",
         "dependsOn": [
@@ -1263,6 +1271,7 @@
       {
         "name": "[concat(variables('aksClusterName'), '/userpool')]",
         "type": "Microsoft.ContainerService/managedClusters/agentPools",
+        "tags": "[parameters('globalTags')]",
         "apiVersion": "2021-10-01",
         "dependsOn": [
           "[variables('aksClusterId')]"
@@ -1295,6 +1304,7 @@
       {
         "type": "Microsoft.Network/networkInterfaces",
         "name": "[variables('virtualMachineNicName')]",
+        "tags": "[parameters('globalTags')]",
         "apiVersion": "2022-01-01",
         "location": "[parameters('location')]",
         "dependsOn": [
@@ -1321,6 +1331,7 @@
       {
         "type": "Microsoft.Compute/virtualMachines",
         "name": "[variables('virtualMachineName')]",
+        "tags": "[parameters('globalTags')]",
         "apiVersion": "2022-03-01",
         "location": "[parameters('location')]",
         "dependsOn": [
@@ -1335,7 +1346,6 @@
           }
         },
         "properties": {
-          "tags": "[parameters('globalTags')]",
           "hardwareProfile": {
             "vmSize": "[parameters('virtualMachineSize')]"
           },
