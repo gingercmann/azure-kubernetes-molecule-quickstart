@@ -4,6 +4,13 @@
     "parameters": {
       "environment": {
         "type": "string",
+        "allowedValues": [
+          "sbx",
+          "dev",
+          "tst",
+          "prd"
+        ],
+        "defaultValue": "sbx",
         "metadata": {
           "description": "Specifies the Azure subscription used in this deployment."
         }

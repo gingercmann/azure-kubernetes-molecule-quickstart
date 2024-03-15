@@ -2,6 +2,19 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "sbx",
+        "dev",
+        "tst",
+        "prd"
+      ],
+      "defaultValue": "sbx",
+      "metadata": {
+        "description": "Specifies the Azure subscription used in this deployment."
+      }
+    },
     "deploymentCondition": {
       "type": "string",
       "metadata": {
@@ -292,6 +305,9 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
+          "environmwnt": {
+            "value": "[parameters('environment')]"
+          },
           "virtualNetworkAddressPrefixes": {
             "value": "[parameters('virtualNetworkAddressPrefixes')]"
           },
