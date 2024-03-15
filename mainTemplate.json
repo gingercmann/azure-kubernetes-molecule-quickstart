@@ -2,6 +2,12 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "environment": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the Azure subscription used in this deployment."
+      }
+    },
     "virtualNetworkAddressPrefixes": {
       "defaultValue": "10.112.64.0/22",
       "type": "string",
@@ -348,6 +354,9 @@
         "parameters": {
           "deploymentCondition": {
             "value": "[reference('BoomiLicenseValidation').outputs.licenseValidation.value]"
+          },
+          "environment": {
+            "value": "[parameters('environment')]"
           },
           "virtualNetworkAddressPrefixes": {
             "value": "[parameters('virtualNetworkAddressPrefixes')]"
