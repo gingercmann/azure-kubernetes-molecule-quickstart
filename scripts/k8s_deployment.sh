@@ -105,6 +105,8 @@ chmod 700 get_helm.sh
 #Sign in with a managed identity
 az login --identity
 
+az cloud set --name AzureUSGovernment
+
 az aks get-credentials --resource-group "$resource_group" --name "$aks_name"
 
 mkdir ~/$fileshare
