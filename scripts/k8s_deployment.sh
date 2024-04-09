@@ -74,6 +74,13 @@ done
 exec &> /var/log/bastion.log
 set -x
 
+#disable selinux
+getenforce
+setenforce 0
+
+#yum update
+yum update -y
+
 #cfn signaling functions
 yum install git -y || apt-get install -y git || zypper -n install git
 
@@ -103,9 +110,9 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 
 #Sign in with a managed identity
-az login --identity
-
 az cloud set --name AzureUSGovernment
+
+az login --identity
 
 az aks get-credentials --resource-group "$resource_group" --name "$aks_name"
 
