@@ -3,6 +3,8 @@
 wget ${REQTXT}
 wget ${LICENSEVALIDATION}
 
+az cloud set --name AzureUSGovernment
+
 pip install -t . -r ./requirements.txt
 
 if [ $BOOMIAUTHENTICATIONTYPE == "Token" ]
