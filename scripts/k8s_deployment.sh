@@ -108,19 +108,7 @@ yum install -y nfs-utils
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 chmod 700 get_helm.sh
 ./get_helm.sh
-
-#Sign in with a managed identity
-az cloud set --name AzureUSGovernment
-
-az login --identity
-
-az aks get-credentials --resource-group "$resource_group" --name "$aks_name"
-
-mkdir ~/$fileshare
-
-mount -t nfs -o rw,hard,rsize=1048576,wsize=1048576,vers=3,tcp $netAppIP:/$fileshare ~/$fileshare
-
-chmod -R 777 ~/$fileshare
+ 
 
 if [ $boomi_auth == "Token" ]
 then
